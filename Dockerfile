@@ -6,8 +6,13 @@ RUN apt-get update && \
 
 RUN npm install -g opencode-ai
 
+RUN corepack enable && npm install -g pnpm
+
 WORKDIR /home/user/workspace
 
-EXPOSE 8000
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
-CMD opencode web --hostname 0.0.0.0 --port ${PORT:-8000}
+EXPOSE 3000
+
+CMD ["/bin/bash", "/start.sh"]
