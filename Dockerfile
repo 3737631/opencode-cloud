@@ -7,5 +7,7 @@ RUN npm install -g opencode-ai
 WORKDIR /home/user/workspace
 
 EXPOSE 4096
+EXPOSE 8080
+EXPOSE 80
 
-CMD ["opencode", "web", "--hostname", "0.0.0.0", "--port", "4096"]
+CMD PORT=${PORT:-4096} && opencode web --hostname 0.0.0.0 --port $PORT
